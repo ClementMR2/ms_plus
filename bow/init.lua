@@ -3,7 +3,7 @@ local function get_yaw(player)
 end
 
 local function get_pitch(player)
-    return player:get_look_pitch()
+    return player:get_look_vertical()
 end
 
 core.register_craftitem("bow:bow", {
@@ -39,13 +39,14 @@ core.register_entity("bow:arrow", {
     initial_properties = {
         pointable = false,
         visual = "upright_sprite",
-        textures = {"bow_arrow.png"}
+        textures = {"arrow.png"}
     },
     on_activate = function(self, staticdata, dtime_s)
         core.chat_send_all("staticdata's table : "..dump(staticdata))
     end,
     on_step = function(self, dtime, moveresult)
-        core.chat_send_all("self's table : "..dump(self))
+        core.chat_send_all("self's table : "..dump(self.object:get_pos()))
+
     end,
     on_punch = function(self, puncher, time_from_last_punch, tool_capabilities, dir, damage) end
 })
